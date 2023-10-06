@@ -1,4 +1,4 @@
-FROM centos:centos7.9.2009
+FROM amazonlinux:2023.2.20230920.1
 
 USER root
 
@@ -12,7 +12,7 @@ ENV JAVA_APP_DIR=/deployments \
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
 RUN yum install -y \
-       java-1.8.0-openjdk-1.8.0.322.b06-1.el7_9 \ 
+       java-1.8.0-amazon-corretto \
     && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
     && yum clean all
 
@@ -32,7 +32,8 @@ EXPOSE 8778 9779
 COPY run-java.sh /deployments/
 RUN chmod 755 /deployments/run-java.sh
 
-
+#install utils to support groupadd
+RUN yum install shadow-utils.x86_64 -y
 
 # Run under user "jboss" and prepare for be running
 # under OpenShift, too
