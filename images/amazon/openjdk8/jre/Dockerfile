@@ -45,6 +45,9 @@ RUN groupadd -r jboss -g 1000 \
   && chmod -R "g+rwX" /deployments \
   && chown -R jboss:root /deployments
 
+#fix for CVE-2023-4911 for GLIBC
+RUN dnf update  --releasever 2023.2.20231002 -y
+
 USER jboss
 
 
