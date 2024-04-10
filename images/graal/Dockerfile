@@ -4,7 +4,7 @@
 #
 
 #FROM 236900137235.dkr.ecr.us-west-2.amazonaws.com/fabric8/java-amazonlinux2023-openjdk17-jre:2023.2.20231023.2 As production
-FROM ghcr.io/graalvm/jdk-community:21 As production
+FROM ghcr.io/graalvm/jdk-community:22.0.0-ol9-20240319 As production
 
 RUN mkdir -p /deployments
 
