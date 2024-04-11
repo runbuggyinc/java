@@ -10,7 +10,7 @@ RUN mkdir -p /deployments
 
 # JAVA_APP_DIR is used by run-java.sh for finding the binaries
 ENV JAVA_APP_DIR=/deployments \
-    JAVA_MAJOR_VERSION=21
+    JAVA_MAJOR_VERSION=22
 
 
 # Agent bond including Jolokia and jmx_exporter
