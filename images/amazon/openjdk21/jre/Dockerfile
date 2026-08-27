@@ -1,4 +1,4 @@
-FROM amazonlinux:2023.6.20241212.0
+FROM amazonlinux:2023.12.20260817.0
 
 USER root
 
@@ -6,13 +6,13 @@ RUN mkdir -p /deployments
 
 # JAVA_APP_DIR is used by run-java.sh for finding the binaries
 ENV JAVA_APP_DIR=/deployments \
-    JAVA_MAJOR_VERSION=17
+    JAVA_MAJOR_VERSION=21
 
 
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
 RUN yum install -y \
-        java-17-amazon-corretto \
+        java-21-amazon-corretto \
     && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
     && yum update -y \
            nss nss-util nss-softokn nspr systemd systemd-libs systemd-pam expat sqlite-libs zlib freetype libtasn1 libksba \
@@ -48,7 +48,7 @@ RUN groupadd -r jboss -g 1000 \
   && chmod -R "g+rwX" /deployments \
   && chown -R jboss:root /deployments
 
-RUN dnf update --releasever 2023.6.20241212.0 -y
+RUN dnf update --releasever 2023.12.20260817.0 -y
 
 USER root
 
